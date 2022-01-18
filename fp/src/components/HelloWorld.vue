@@ -29,12 +29,21 @@ export default {
   },
   methods: {
     divide(op1,op2){
+     if ((op1 && op2) == 0) {
+      alert('Недопустимая операция')
+    } else {
     this.result = op1 / op2;
+    }
     },
     multiply(op1,op2){
-    this.result = op1 * op2;
+    if ((op1 && op2) == 0) {
+      alert('Недопустимая операция')
+    } else {
+      this.result = op1 * op2;
+    }
     },
-    exponent(op1,op2){
+    exponent(op1,op2)
+    {
     this.result = Math.pow(op1,op2)
     },
     integerDivision(op1, op2){
