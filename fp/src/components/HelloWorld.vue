@@ -5,12 +5,7 @@
     <input type="number" v-model.number.lazy="operand2">
     = {{ result }}
     <hr>
-    <button @click="calculate('+')">+</button>
-    <button @click="calculate('-')">-</button>
-    <button @click="calculate('*')">*</button>
-    <button @click="calculate('/')">/</button>
-    <button @click="calculate('^')">^</button>
-    <button @click="calculate('%')">%</button>
+    <button v-for="(item, index) in operators" @click="calculate(item)" :key="index">{{ item }}</button>
   </div>
 </template>
 
@@ -25,6 +20,7 @@ export default {
       result: 0,
       operand1: 0,
       operand2: 0,
+      operators: ['+', '-', '*', '/', '^', '%']
     }
   },
   methods: {
