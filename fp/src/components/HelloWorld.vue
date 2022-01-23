@@ -5,12 +5,12 @@
     <input type="number" v-model.number.lazy="operand2">
     = {{ result }}
     <hr>
-    <button @click="result = operand1 + operand2">+</button>
-    <button @click="result = operand1 - operand2">-</button>
-    <button @click="multiply(operand1, operand2)">*</button>
-    <button @click="divide(operand1, operand2)">/</button>
-    <button @click="exponent(operand1, operand2)">^</button>
-    <button @click="integerDivision(operand1, operand2)">%</button>
+    <button @click="calculate('+')">+</button>
+    <button @click="calculate('-')">-</button>
+    <button @click="calculate('*')">*</button>
+    <button @click="calculate('/')">/</button>
+    <button @click="calculate('^')">^</button>
+    <button @click="calculate('%')">%</button>
   </div>
 </template>
 
@@ -28,26 +28,45 @@ export default {
     }
   },
   methods: {
-    divide(op1,op2){
-     if ((op1 && op2) == 0) {
-      alert('Недопустимая операция')
-    } else {
-    this.result = op1 / op2;
-    }
+    calculate(operation="+"){
+      switch(operation){
+        case '+':
+            this.sum()
+            break;
+        case '-':
+            this.subtraction()
+            break;
+        case '*':
+            this.multiply()
+            break;
+        case '/':
+            this.divide()
+            break;
+        case '^':
+            this.exponent()
+            break;
+        case '%':
+            this.integerDivision()
+            break;
+      }
     },
-    multiply(op1,op2){
-    if ((op1 && op2) == 0) {
-      alert('Недопустимая операция')
-    } else {
-      this.result = op1 * op2;
-    }
+    sum(){
+      return this.result = this.operand1 + this.operand2;
     },
-    exponent(op1,op2)
-    {
-    this.result = Math.pow(op1,op2)
+    subtraction(){
+      return this.result = this.operand1 - this.operand2;
     },
-    integerDivision(op1, op2){
-      this.result = op1 % op2;
+    multiply(){
+      this.result = this.operand1 * this.operand2;
+    },
+    divide(){
+      this.result = this.operand1 / this.operand2;
+    },
+    exponent(){
+      this.result = Math.pow(this.operand1,this.operand2)
+    },
+    integerDivision(){
+      this.result = this.operand1 % this.operand2
     }
   }
 }
