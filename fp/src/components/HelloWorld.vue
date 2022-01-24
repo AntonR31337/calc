@@ -8,7 +8,7 @@
     <button v-for="(item, index) in operators" @click="calculate(item)" :key="index">{{ item }}</button>
     <hr>
       <label for="checkbox">
-        <input type="checkbox" name="checkbox" id="checkbox" > Отобразить экранную клавиатуру
+        <input type="checkbox" name="checkbox" id="checkbox" v-model="disabled"> Отобразить экранную клавиатуру
         <br>
         <button v-show="disabled" v-for="item in operands" :key="item">{{ item }}</button>
     </label>
@@ -28,7 +28,7 @@ export default {
       operand2: 0,
       operators: ['+', '-', '*', '/', '^', '%'],
       operands: [0,1,2,3,4,5,6,7,8,9],
-      disabled: true,
+      disabled: false,
     }
   },
   methods: {
