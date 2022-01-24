@@ -5,13 +5,20 @@
     <input type="number" v-model.number.lazy="operand2">
     = {{ result }}
     <hr>
-    <button v-for="(item, index) in operators" @click="calculate(item)" :key="index">{{ item }}</button>
+    <button class="operators" v-for="(item, index) in operators" @click="calculate(item)" :key="index">{{ item }}</button>
     <hr>
       <label for="checkbox">
-        <input type="checkbox" name="checkbox" id="checkbox" v-model="disabled"> Отобразить экранную клавиатуру
+        <input type="checkbox" name="checkbox" id="checkbox" v-model="disabled"> Отобразить экранную клавиатуру </label>
         <br>
-        <button v-show="disabled" v-for="item in operands" :key="item">{{ item }}</button>
-    </label>
+        <div v-show="disabled" class="keyboard__wrapper">
+          <button class="keyboard__item" v-for="item in operands" :key="item" @click="inputNum(item)">{{ item }}</button>
+          <button class="keyboard__item" @click="eraseOne()">E</button>
+          <button class="keyboard__item" disabled="true">C</button>
+          <br>
+          <label for=""><input checked="true" type="radio" name="operand" value="1" v-model="operch" />Операнд 1</label>
+            <br>
+          <label for=""><input type="radio" name="operand" value="2" v-model="operch" />Операнд 2 </label>
+        </div>
   </div>
 </template>
 
@@ -27,8 +34,9 @@ export default {
       operand1: 0,
       operand2: 0,
       operators: ['+', '-', '*', '/', '^', '%'],
-      operands: [0,1,2,3,4,5,6,7,8,9],
+      operands: [9,1,2,3,4,5,6,7,8,0],
       disabled: false,
+      operch: "",
     }
   },
   methods: {
@@ -76,6 +84,16 @@ export default {
     integerDivision(){
       this.result = this.operand1 % this.operand2
     },
+    inputNum(el){
+      const {operch} = this
+      const input = operch === "1" ? "operand1": "operand2";
+      this[input] = +(this[input] += String(el))
+    },
+    eraseOne(){
+      const {operch} = this
+      const input = operch === "1" ? "operand1": "operand2";
+      this[input] =+String(this[input]).slice(0, -1)
+    }
   }
 }
 </script>
@@ -95,5 +113,15 @@ li {
 }
 a {
   color: #42b983;
+}
+.operators{
+  margin: 5px;
+}
+.keyboard__wrapper{
+  width: 130px;
+  margin: 15px auto;
+}
+.keyboard__item{
+  margin: 5px;
 }
 </style>
