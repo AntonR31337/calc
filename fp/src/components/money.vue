@@ -1,25 +1,28 @@
 <template>
-  <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <calculator msg="The Best Calculator" hidden=true />
-    <money/>
+  <div class="wrapper">
+    <h1>{{ name }}</h1>
+    <MyButton />
+    <MyButton />
   </div>
-  
-
 </template>
 
 <script>
-import calculator from './components/HelloWorld.vue'
-import money from './components/money.vue'
+import MyButton from "./MyButton.vue";
 
 export default {
-  name: 'App',
+  name: "Money",
   components: {
-    calculator,
-    money
+    MyButton,
   },
-}
-
+  props: {
+    msg: String,
+  },
+  data() {
+    return {
+      name: "My personal costs",
+    };
+  },
+};
 </script>
 
 <style>
