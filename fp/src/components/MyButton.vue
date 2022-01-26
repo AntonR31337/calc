@@ -1,19 +1,20 @@
 <template>
-    <button @click="onClick">Clicked {{ counter }} times</button>
+    <button class="PaymentForm__btn"> {{ title }} </button>
 </template>
     
 <script>
     export default {
         name: "MyButton",
+        props:[
+            'title',
+        ],
         data(){
             return {
-                counter: 0,
+                //
             }
         },
         methods: {
-            onClick(){
-                this.counter++
-            }
+
         }
     }
 
@@ -21,5 +22,10 @@
 </script>
 
 <style>
-
+.PaymentForm__btn{
+    margin: 15px 0;
+    width: 150px;
+    background-color: #7fecff;
+    align-self: end;
+}
 </style>

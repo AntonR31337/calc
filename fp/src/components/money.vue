@@ -2,9 +2,12 @@
   <div class="home">
     <header><h1>{{ name }}</h1></header>
     <main>
-      <MyButton />
+      <div class="PaymentForm">
+      <MyButton class="PaymentForm__btn" :title="titleBtn" @click="addNewCost" />
+      <button @click="addNewCost">ADD NEW COST +</button>
       <AddPaymentForm @addNewPayment="addPayment" />
-      <PaymentsDisplay :items="PaymentsList" />
+      </div>
+      <PaymentsDisplay class="PaymentsList" :items="PaymentsList" />
     </main>
   </div>
 </template>
@@ -23,14 +26,21 @@ export default {
   },
   props: {
     msg: String,
+    actionTitle: String
   },
   data() {
     return {
       name: "My personal costs",
       PaymentsList: [],
+      titleBtn: 'ADD NEW COST +',
+      disabled: false
     };
   },
   methods: {
+    addNewCost(){
+      document.querySelector("#app > div.home > main > div.PaymentForm > div").classList.toggle('hidden')
+      console.log(this.$emit)
+    },
     addPayment(data){
       this.PaymentsList = [...this.PaymentsList, data]
     },
@@ -71,5 +81,22 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.wrapper{
+  width: 500px;
+}
+.PaymentsList{
+  margin-top: 15px;
+}
+.AddPaymentForm-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+}
+.AddPaymentForm-input{
+  margin-top: 15px;
+}
+.hidden{
+  display: none;
 }
 </style>
