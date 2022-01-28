@@ -43,7 +43,7 @@ export default {
                 date: this.date || this.getCurrentDate
             };
             this.$emit('addNewPayment', data)
-            console.log(data)
+            this.$store.commit('addDataToPaymentsList', data)
         },
     }
 }

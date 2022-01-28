@@ -7,7 +7,7 @@
       <button @click="addNewCost">ADD NEW COST +</button>
       <AddPaymentForm @addNewPayment="addPayment" />
       </div>
-      <PaymentsDisplay class="PaymentsList" :items="PaymentsList" />
+      <PaymentsDisplay class="paymentsList" :items="paymentsList" />
     </main>
   </div>
 </template>
@@ -16,6 +16,7 @@
 import MyButton from "./MyButton.vue";
 import PaymentsDisplay from "./PaymentsDisplay.vue"
 import AddPaymentForm from "./AddPaymentForm.vue"
+import { mapMutations } from 'vuex'
 
 export default {
   name: "Money",
@@ -31,18 +32,27 @@ export default {
   data() {
     return {
       name: "My personal costs",
-      PaymentsList: [],
       titleBtn: 'ADD NEW COST +',
       disabled: false
     };
   },
+  computed: {
+    getFPV(){
+      return this.$store.getters.getFullPaymentValue
+    },
+    paymentsList(){
+      return this.$store.getters.getPaymentsList
+    }
+  },
   methods: {
+    ...mapMutations({
+      myMutation: 'setPaymentsListData'
+    }),
     addNewCost(){
       document.querySelector("#app > div.home > main > div.PaymentForm > div").classList.toggle('hidden')
-      console.log(this.$emit)
     },
     addPayment(data){
-      this.PaymentsList = [...this.PaymentsList, data]
+      this.$store.commit('addDataToPaymentsList', data)
     },
     fetchData(){
       return [
@@ -68,7 +78,7 @@ export default {
     }
   },
   created(){
-    this.PaymentsList = this.fetchData()
+    this.myMutation(this.fetchData())
   }
 };
 </script>
@@ -85,7 +95,7 @@ export default {
 .wrapper{
   width: 500px;
 }
-.PaymentsList{
+.paymentsList{
   margin-top: 15px;
 }
 .AddPaymentForm-wrapper{
