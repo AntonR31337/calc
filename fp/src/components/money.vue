@@ -47,19 +47,19 @@ export default {
     fetchData(){
       return [
          {
-        id: 1,
+        id: 1643385818120,
         date: '28.03.2020',
         category: 'Food',
         value: 169,
       },
       {
-        id: 2,
+        id: 1643385829382,
         date: '24.03.2020',
         category: 'Transport',
         value: 360,
       },
       {
-        id: 3,
+        id: 1643385820482,
         date: '24.03.2020',
         category: 'Food',
         value: 532,
