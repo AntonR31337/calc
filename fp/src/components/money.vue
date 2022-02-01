@@ -9,7 +9,8 @@
       </div>
       TOTAL: <b>{{ getFullPaymentValue }}</b>
       <hr>
-      <PaymentsDisplay class="paymentsList" :items="paymentsList" />
+      <PaymentsDisplay class="paymentsList" :items="currentElements" />
+      <Pagination :length="paymentsList.length" :cur="curPage" :n="n" @paginate="onChangePage"/>
     </main>
   </div>
 </template>
@@ -18,6 +19,7 @@
 import MyButton from "./MyButton.vue";
 import PaymentsDisplay from "./PaymentsDisplay.vue"
 import AddPaymentForm from "./AddPaymentForm.vue"
+import Pagination from "./Pagination.vue"
 import { mapMutations, mapActions, mapGetters } from 'vuex'
 
 export default {
@@ -25,7 +27,8 @@ export default {
   components: {
     MyButton,
     PaymentsDisplay,
-    AddPaymentForm
+    AddPaymentForm,
+    Pagination
   },
   props: {
     msg: String,
@@ -35,7 +38,8 @@ export default {
     return {
       name: "My personal costs",
       titleBtn: 'ADD NEW COST +',
-      disabled: false
+      curPage: 1,
+      n: 10
     };
   },
   computed: {
@@ -44,6 +48,9 @@ export default {
     ]),
     paymentsList(){
       return this.$store.getters.getPaymentsList
+    },
+    currentElements(){
+      return this.paymentsList.slice(this.n * (this.curPage -1 ), this.n * (this.curPage -1 ) + this.n)
     }
   },
   methods: {
@@ -59,32 +66,12 @@ export default {
     addPayment(data){
       this.$store.commit('addDataToPaymentsList', data)
     },
-    // fetchData(){
-    //   return [
-    //      {
-    //     id: 1643385818120,
-    //     date: '28.03.2020',
-    //     category: 'Food',
-    //     value: 169,
-    //   },
-    //   {
-    //     id: 1643385829382,
-    //     date: '24.03.2020',
-    //     category: 'Transport',
-    //     value: 360,
-    //   },
-    //   {
-    //     id: 1643385820482,
-    //     date: '24.03.2020',
-    //     category: 'Food',
-    //     value: 532,
-    //   },
-    //   ]
-    // }
+    onChangePage(page){
+      this.curPage = page
+    }
   },
   created(){
     this.fetchData()
-    // this.$store.dispatch('fetchData')
   }
 };
 </script>
@@ -115,4 +102,5 @@ export default {
 .hidden{
   display: none;
 }
+
 </style>

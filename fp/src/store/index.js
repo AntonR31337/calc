@@ -7,7 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         paymentsList: [],
-        categoryList: []
+        categoryList: [],
     },
     mutations: {
         setPaymentsListData(state, payload){
@@ -25,7 +25,7 @@ export default new Vuex.Store({
             return new Promise((resolve) => {
                 setTimeout(()=>{
                     const items = []
-                    for (let i = 1; i < 101; i++){
+                    for (let i = 1; i < 51; i++){
                         items.push({
                             date: Date.now(),
                             category: "Food",
@@ -54,6 +54,6 @@ export default new Vuex.Store({
         getFullPaymentValue: state => {
             return state.paymentsList.reduce((acc, cur) => acc + cur.value, 0) 
         },
-        getCategoryList: state => state.categoryList
+        getCategoryList: state => state.categoryList,
     }
 })
