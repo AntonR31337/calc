@@ -1,7 +1,11 @@
 <template>
   <div class="AddPaymentForm-wrapper hidden">
-      <input class="AddPaymentForm-input" placeholder="Amount" v-model="value" />
-      <input class="AddPaymentForm-input" placeholder="Type" v-model="category" />
+      <input class="AddPaymentForm-input" placeholder="Amount" v-model.number="value" />
+      <div class="select">
+          <select v-model="category">
+              <option v-for="(option, idx) in options" :key="idx">{{ option }}</option>
+          </select>
+      </div>
       <input class="AddPaymentForm-input" placeholder="Date" v-model="date" />
       <button @click="onSaveClick()" class="PaymentForm__btn" >Save</button>
       <MyButton @click="onSaveClick()" :title="titleBtn" />
@@ -31,6 +35,9 @@ export default {
             const m = today.getMonth() + 1
             const y = today.getFullYear()
             return `${d}.${m}.${y}`
+        },
+        options(){
+            return this.$store.getters.getCategoryList
         }
     },
     methods: {
@@ -45,7 +52,13 @@ export default {
             this.$emit('addNewPayment', data)
             this.$store.commit('addDataToPaymentsList', data)
         },
-    }
+    },
+    async created(){
+        if (!this.options.length){
+            await this.$store.dispatch('loadCategories')
+        }
+        this.category = this.options[0]
+    },
 }
 </script>
 

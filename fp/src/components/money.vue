@@ -7,6 +7,8 @@
       <button @click="addNewCost">ADD NEW COST +</button>
       <AddPaymentForm @addNewPayment="addPayment" />
       </div>
+      TOTAL: <b>{{ getFullPaymentValue }}</b>
+      <hr>
       <PaymentsDisplay class="paymentsList" :items="paymentsList" />
     </main>
   </div>
@@ -16,7 +18,7 @@
 import MyButton from "./MyButton.vue";
 import PaymentsDisplay from "./PaymentsDisplay.vue"
 import AddPaymentForm from "./AddPaymentForm.vue"
-import { mapMutations } from 'vuex'
+import { mapMutations, mapActions, mapGetters } from 'vuex'
 
 export default {
   name: "Money",
@@ -37,9 +39,9 @@ export default {
     };
   },
   computed: {
-    getFPV(){
-      return this.$store.getters.getFullPaymentValue
-    },
+    ...mapGetters([
+      'getFullPaymentValue'
+    ]),
     paymentsList(){
       return this.$store.getters.getPaymentsList
     }
@@ -48,37 +50,41 @@ export default {
     ...mapMutations({
       myMutation: 'setPaymentsListData'
     }),
+    ...mapActions([
+      'fetchData'
+    ]),
     addNewCost(){
       document.querySelector("#app > div.home > main > div.PaymentForm > div").classList.toggle('hidden')
     },
     addPayment(data){
       this.$store.commit('addDataToPaymentsList', data)
     },
-    fetchData(){
-      return [
-         {
-        id: 1643385818120,
-        date: '28.03.2020',
-        category: 'Food',
-        value: 169,
-      },
-      {
-        id: 1643385829382,
-        date: '24.03.2020',
-        category: 'Transport',
-        value: 360,
-      },
-      {
-        id: 1643385820482,
-        date: '24.03.2020',
-        category: 'Food',
-        value: 532,
-      },
-      ]
-    }
+    // fetchData(){
+    //   return [
+    //      {
+    //     id: 1643385818120,
+    //     date: '28.03.2020',
+    //     category: 'Food',
+    //     value: 169,
+    //   },
+    //   {
+    //     id: 1643385829382,
+    //     date: '24.03.2020',
+    //     category: 'Transport',
+    //     value: 360,
+    //   },
+    //   {
+    //     id: 1643385820482,
+    //     date: '24.03.2020',
+    //     category: 'Food',
+    //     value: 532,
+    //   },
+    //   ]
+    // }
   },
   created(){
-    this.myMutation(this.fetchData())
+    this.fetchData()
+    // this.$store.dispatch('fetchData')
   }
 };
 </script>

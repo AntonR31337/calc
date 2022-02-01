@@ -1,12 +1,13 @@
-import { resolve } from 'core-js/fn/promise'
 import Vue from 'vue'
 import Vuex from 'vuex'
+
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        paymentsList: []
+        paymentsList: [],
+        categoryList: []
     },
     mutations: {
         setPaymentsListData(state, payload){
@@ -15,18 +16,18 @@ export default new Vuex.Store({
         addDataToPaymentsList(state, data){
             state.paymentsList.push(data)
         },
-        // editPaymentItem(state, payload){
-        //     Vue.set(state.paymentsList, 0, payload)
-        // }
+        setCategories(state, payload){
+            state.categoryList = payload
+        }
     },
     actions: {
-        fetchData({commit}){
+        fetchData({ commit }){
             return new Promise((resolve) => {
                 setTimeout(()=>{
                     const items = []
                     for (let i = 1; i < 101; i++){
                         items.push({
-                            date: new Date.now(),
+                            date: Date.now(),
                             category: "Food",
                             id: i,
                             value: i 
@@ -38,11 +39,21 @@ export default new Vuex.Store({
                 commit('setPaymentsListData', res)
             })
         },
+        loadCategories({ commit }){
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(['Food', 'Transport', 'Education', 'Entertiment', 'Sport', 'Other'])
+                }, 1000)
+            }).then(res => {
+                commit('setCategories', res)
+            })
+        }
     },
     getters: {
         getPaymentsList: state => state.paymentsList,
         getFullPaymentValue: state => {
             return state.paymentsList.reduce((acc, cur) => acc + cur.value, 0) 
-        }
+        },
+        getCategoryList: state => state.categoryList
     }
 })
