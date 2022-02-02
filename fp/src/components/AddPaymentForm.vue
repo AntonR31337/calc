@@ -50,7 +50,7 @@ export default {
                 date: this.date || this.getCurrentDate
             };
             this.$emit('addNewPayment', data)
-            this.$store.commit('addDataToPaymentsList', data)
+            // this.$store.commit('addDataToPaymentsList', data)
         },
     },
     async created(){
