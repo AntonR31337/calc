@@ -10,7 +10,8 @@
       TOTAL: <b>{{ getFullPaymentValue }}</b>
       <hr>
       <PaymentsDisplay class="paymentsList" :items="currentElements" />
-      <Pagination :length="paymentsList.length" :cur="curPage" :n="n" @paginate="onChangePage"/>
+      <!-- <Pagination :length="paymentsList.length" :cur="curPage" :n="n" @paginate="onChangePage"/> -->
+      <Pagination :length="12" :cur="curPage" :n="3" @paginate="onChangePage"/>
     </main>
   </div>
 </template>
@@ -68,10 +69,11 @@ export default {
     },
     onChangePage(page){
       this.curPage = page
+      this.fetchData(page)
     }
   },
   created(){
-    this.fetchData()
+    this.fetchData(this.curPage)
   }
 };
 </script>
