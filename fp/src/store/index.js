@@ -2,25 +2,34 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-
 Vue.use(Vuex)
-
 
 export let localDB = fetch("https://run.mocky.io/v3/7e8a6305-f6bd-4411-b03a-6856842d7b7e");
 localDB.then((res) => res.json()).then(data => localDB = data);
 
 export default new Vuex.Store({
     state: {
-        paymentsList: [],
+        paymentsList: [localDB],
         paymentsListIDS: [],
         categoryList: []
     },
     mutations: {
         setPaymentsListData(state, payload){
+            console.log(payload, 'set...')
             state.paymentsList = payload
+            const newUnitObjs = payload.filter(obj => {
+                return state.paymentsListIDS.indexOf(obj.id) < 0
+            })
+            const unitIds = newUnitObjs.map(obj => obj.id)
+            state.paymentsListIDS.push(...unitIds)
         },
         addDataToPaymentsList(state, data){
+            console.log(data, 'add ...')
+            
             state.paymentsList.push(data)
+            console.log(state.paymentsList, '/// paymentsList')
+            state.paymentsListIDS.push(data.id)
+            
         },
         setCategories(state, payload){
             state.categoryList = payload
@@ -30,11 +39,11 @@ export default new Vuex.Store({
         fetchData({ commit }, page){
             return new Promise((resolve) => {
                 setTimeout(()=>{
+                    console.log(page)
                     const items = localDB[`page${page}`]
-                    // остановился на 40-й минуте
                     resolve(items)
                 }, 1500)
-            }).then((res) => commit('setPaymentsListData', res))
+            }).then((res) => commit(('addDataToPaymentsList', 'setPaymentsListData'), res))
         },
         // fetchData({ commit }){
         //     return new Promise((resolve) => {

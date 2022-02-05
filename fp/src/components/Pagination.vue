@@ -47,6 +47,6 @@ export default {
   margin: 5px;
 }
 .active {
-    color: tomato;
+    color: red;
 }
 </style>

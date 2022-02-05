@@ -51,7 +51,7 @@ export default {
       return this.$store.getters.getPaymentsList
     },
     currentElements(){
-      return this.paymentsList.slice(this.n * (this.curPage -1 ), this.n * (this.curPage -1 ) + this.n)
+      return this.paymentsList.slice(3 * (this.curPage -1 ), 3 * (this.curPage -1 ) + 3)
     }
   },
   methods: {
@@ -74,6 +74,7 @@ export default {
   },
   created(){
     this.fetchData(this.curPage)
+    console.log(this.curPage, '////')
   }
 };
 </script>
