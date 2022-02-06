@@ -10,7 +10,8 @@ export const localDB = {
     page1: [
       { id: 1, date: "20.03.2020", category: "Food", value: 169 },
       { id: 2, date: "21.03.2020", category: "Navigation", value: 50 },
-      { id: 3, date: "22.03.2020", category: "Sport", value: 450 }
+      { id: 3, date: "22.03.2020", category: "Sport", value: 450 },
+      { id: 13, date: "22.03.2020", category: "Sport", value: 455 }
     ],
     page2: [
       { id: 4, date: "23.03.2020", category: "Entertaiment", value: 969 },
@@ -48,6 +49,12 @@ export default new Vuex.Store({
             state.paymentsList.push(...newUnitObjs)
         },
         addDataToPaymentsList(state, data){
+            // if(state.paymentsList[(state.paymentsList.length) - 1] !== 3) {
+            //     console.log(state.paymentsList, '123')
+                
+            // }
+            console.log(state.paymentsList)            
+            // console.log(state.paymentsList[state.paymentsList.length - 1])
             state.paymentsList.push(data)
             state.paymentsListIDS.push(data.id)
         },
