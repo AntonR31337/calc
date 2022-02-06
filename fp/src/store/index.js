@@ -18,14 +18,14 @@ export const localDB = {
       { id: 6, date: "25.03.2020", category: "Food", value: 200 }
     ],
     page3: [
-        { id: 7, date: "20.03.2020", category: "Food", value: 169 },
-        { id: 8, date: "21.03.2020", category: "Navigation", value: 50 },
-        { id: 9, date: "22.03.2020", category: "Sport", value: 450 }
+        { id: 7, date: "20.03.2020", category: "Food", value: 280 },
+        { id: 8, date: "21.03.2020", category: "Navigation", value: 40 },
+        { id: 9, date: "22.03.2020", category: "Sport", value: 250 }
       ],
     page4: [
-        { id: 10, date: "23.03.2020", category: "Entertaiment", value: 969 },
-        { id: 11, date: "24.03.2020", category: "Education", value: 1500 },
-        { id: 12, date: "25.03.2020", category: "Food", value: 200 }
+        { id: 10, date: "23.03.2020", category: "Entertaiment", value: 1969 },
+        { id: 11, date: "24.03.2020", category: "Education", value: 2500 },
+        { id: 12, date: "25.03.2020", category: "Food", value: 300 }
       ]
     }
 
@@ -37,12 +37,15 @@ export default new Vuex.Store({
     },
     mutations: {
         setPaymentsListData(state, payload){
-            state.paymentsList = payload
+            // state.paymentsList = payload
             const newUnitObjs = payload.filter(obj => {
                 return state.paymentsListIDS.indexOf(obj.id) < 0
             })
+            
             const unitIds = newUnitObjs.map(obj => obj.id)
+
             state.paymentsListIDS.push(...unitIds)
+            state.paymentsList.push(...newUnitObjs)
         },
         addDataToPaymentsList(state, data){
             state.paymentsList.push(data)
@@ -56,10 +59,10 @@ export default new Vuex.Store({
         fetchData({ commit }, page){
             return new Promise((resolve) => {
                 setTimeout(()=>{
-                    const items = localDB
+                    const items = localDB[`page${page}`]
                     resolve(items)
                 }, 1500)
-            }).then((res) => commit('addDataToPaymentsList', res, page))
+            }).then((res) => commit('setPaymentsListData', res))
         },
         // fetchData({ commit }){
         //     return new Promise((resolve) => {

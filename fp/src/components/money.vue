@@ -52,10 +52,10 @@ export default {
     },
     currentElements(){
       // const pref = `page${this.curPage}`
-      return this.paymentsList[0][`page${this.curPage}`]
+      // return this.paymentsList[`page${this.curPage}`]
     // return this.paymentsList["page1"]
       // return this.paymentsList[0].page1
-      // return this.paymentsList.slice(3 * (this.curPage -1 ), 3 * (this.curPage -1 ) + 3)
+      return this.paymentsList.slice(3 * (this.curPage -1 ), 3 * (this.curPage -1 ) + 3)
     }
   },
   methods: {

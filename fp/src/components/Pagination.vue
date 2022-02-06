@@ -20,7 +20,7 @@ export default {
     },
     computed: {
         amount(){
-            return Math.ceil(12 / 3)
+            return Math.ceil(15 / 3)
         }
     },
     methods: {
