@@ -51,7 +51,11 @@ export default {
       return this.$store.getters.getPaymentsList
     },
     currentElements(){
-      return this.paymentsList.slice(3 * (this.curPage -1 ), 3 * (this.curPage -1 ) + 3)
+      // const pref = `page${this.curPage}`
+      return this.paymentsList[0][`page${this.curPage}`]
+    // return this.paymentsList["page1"]
+      // return this.paymentsList[0].page1
+      // return this.paymentsList.slice(3 * (this.curPage -1 ), 3 * (this.curPage -1 ) + 3)
     }
   },
   methods: {
@@ -74,7 +78,6 @@ export default {
   },
   created(){
     this.fetchData(this.curPage)
-    console.log(this.curPage, '////')
   }
 };
 </script>
