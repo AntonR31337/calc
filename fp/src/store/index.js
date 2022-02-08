@@ -1,4 +1,4 @@
-// import { resolve } from 'core-js/fn/promise'
+
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -31,7 +31,6 @@ export default new Vuex.Store({
             return new Promise((resolve) => {
                 setTimeout(()=>{
                     const items = localDB[`page${page}`]
-                    // остановился на 40-й минуте
                     resolve(items)
                 }, 1500)
             }).then((res) => commit('setPaymentsListData', res))
@@ -73,7 +72,3 @@ export default new Vuex.Store({
     }
 })
 
-// let db = [];
-// fetch("https://run.mocky.io/v3/7e8a6305-f6bd-4411-b03a-6856842d7b7e").then((res) => {
-//     return res.json()
-// }).then((data) => db = data)

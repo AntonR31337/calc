@@ -11,7 +11,7 @@
       <hr>
       <PaymentsDisplay class="paymentsList" :items="currentElements" />
       <!-- <Pagination :length="paymentsList.length" :cur="curPage" :n="n" @paginate="onChangePage"/> -->
-      <Pagination :length="12" :cur="curPage" :n="3" @paginate="onChangePage"/>
+      <Pagination :length="paymentsList.length" :cur="curPage" :n="n" @paginate="onChangePage"/>
     </main>
   </div>
 </template>

@@ -2,6 +2,7 @@
 node_modules
 /dist
 localDB.json
+test.vue
 
 # local env files
 .env.local
