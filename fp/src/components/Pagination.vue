@@ -11,6 +11,7 @@
 </template>
 
 <script>
+
 export default {
     name: 'Pagination',
     props: {
@@ -19,8 +20,15 @@ export default {
         n: Number
     },
     computed: {
+        curPage(){
+            return this.$store.getters.getPaymentsList
+        },
+
         amount(){
-            return Math.ceil(30 / this.n)
+            const qwe = this.curPage.length / 3
+            return Math.ceil(qwe)
+
+            // return Math.ceil(12 / this.n)
             // return Math.ceil(this.length / this.n)
         }
     },

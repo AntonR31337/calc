@@ -56,6 +56,8 @@ export default {
     // return this.paymentsList["page1"]
       // return this.paymentsList[0].page1
       return this.paymentsList.slice(3 * (this.curPage -1 ), 3 * (this.curPage -1 ) + 3)
+
+      // return this.paymentsList[this.curPage - 1][`page${this.curPage}`]
     }
   },
   methods: {
@@ -69,7 +71,8 @@ export default {
       document.querySelector("#app > div.home > main > div.PaymentForm > div").classList.toggle('hidden')
     },
     addPayment(data){
-      this.$store.commit('addDataToPaymentsList', data)
+      const newData = [data]
+      this.$store.commit('setPaymentsListData', newData)
     },
     onChangePage(page){
       this.curPage = page

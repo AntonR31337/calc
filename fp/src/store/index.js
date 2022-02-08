@@ -11,17 +11,20 @@ export const localDB = {
       { id: 1, date: "20.03.2020", category: "Food", value: 169 },
       { id: 2, date: "21.03.2020", category: "Navigation", value: 50 },
       { id: 3, date: "22.03.2020", category: "Sport", value: 450 },
-      { id: 13, date: "22.03.2020", category: "Sport", value: 455 }
+      { id: 13, date: "22.03.2020", category: "Sport", value: 455 },
+      { id: 14, date: "22.03.2020", category: "Sport", value: 1455 }
     ],
     page2: [
       { id: 4, date: "23.03.2020", category: "Entertaiment", value: 969 },
       { id: 5, date: "24.03.2020", category: "Education", value: 1500 },
-      { id: 6, date: "25.03.2020", category: "Food", value: 200 }
+      { id: 6, date: "25.03.2020", category: "Food", value: 200 },
+      { id: 13, date: "22.03.2020", category: "Sport", value: 455 }
     ],
     page3: [
         { id: 7, date: "20.03.2020", category: "Food", value: 280 },
         { id: 8, date: "21.03.2020", category: "Navigation", value: 40 },
-        { id: 9, date: "22.03.2020", category: "Sport", value: 250 }
+        { id: 9, date: "22.03.2020", category: "Sport", value: 250 },
+        { id: 13, date: "22.03.2020", category: "Sport", value: 455 }
       ],
     page4: [
         { id: 10, date: "23.03.2020", category: "Entertaiment", value: 1969 },
@@ -34,10 +37,12 @@ export default new Vuex.Store({
     state: {
         paymentsList: [],
         paymentsListIDS: [],
-        categoryList: []
+        categoryList: [],
     },
     mutations: {
+
         setPaymentsListData(state, payload){
+            // state.paymentsList.push(payload)
             // state.paymentsList = payload
             const newUnitObjs = payload.filter(obj => {
                 return state.paymentsListIDS.indexOf(obj.id) < 0
@@ -46,28 +51,35 @@ export default new Vuex.Store({
             const unitIds = newUnitObjs.map(obj => obj.id)
 
             state.paymentsListIDS.push(...unitIds)
+
+            // const pageOfLisst = {
+            //     [`page${state.curPage}`] : newUnitObjs
+            // }
+
+            // state.paymentsList.push(pageOfLisst)
             state.paymentsList.push(...newUnitObjs)
         },
-        addDataToPaymentsList(state, data){
-            // if(state.paymentsList[(state.paymentsList.length) - 1] !== 3) {
-            //     console.log(state.paymentsList, '123')
-                
-            // }
-            console.log(state.paymentsList)            
-            // console.log(state.paymentsList[state.paymentsList.length - 1])
-            state.paymentsList.push(data)
-            state.paymentsListIDS.push(data.id)
-        },
+        // addDataToPaymentsList(state, data){
+
+        //     console.log(state.paymentsList)            
+        //     state.paymentsList.push(data)
+        //     state.paymentsListIDS.push(data.id)
+        // },
         setCategories(state, payload){
             state.categoryList = payload
         }
     },
     actions: {
         fetchData({ commit }, page){
+            // commit('changeCurPage', (3))
             return new Promise((resolve) => {
                 setTimeout(()=>{
                     const items = localDB[`page${page}`]
-                    resolve(items)
+// экспермент с страницами 
+                    // const items = {
+                    //     [`page${page}`]: [localDB[`page${page}`]]
+                    // }   
+                    resolve(items, page)
                 }, 1500)
             }).then((res) => commit('setPaymentsListData', res))
         },
