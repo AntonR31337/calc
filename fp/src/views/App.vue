@@ -2,21 +2,25 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <calculator msg="The Best Calculator" hidden=true />
-    <money/>
+    <DashBoard />
+    <About />
   </div>
+
   
 
 </template>
 
 <script>
-import calculator from './components/HelloWorld.vue'
-import money from './components/money.vue'
+import calculator from '../components/HelloWorld.vue'
+import DashBoard from '../components/DashBoard.vue'
+import About from './About.vue'
 
 export default {
   name: 'App',
   components: {
     calculator,
-    money
+    DashBoard,
+    About
   },
 }
 

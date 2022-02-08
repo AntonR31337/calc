@@ -7,7 +7,7 @@
       <button @click="addNewCost">ADD NEW COST +</button>
       <AddPaymentForm @addNewPayment="addPayment" />
       </div>
-      TOTAL11: <b>{{ getFullPaymentValue }}</b>
+      TOTAL: <b>{{ getFullPaymentValue }}</b>
       <hr>
       <PaymentsDisplay class="paymentsList" :items="currentElements" />
       <!-- <Pagination :length="paymentsList.length" :cur="curPage" :n="n" @paginate="onChangePage"/> -->
@@ -24,7 +24,7 @@ import Pagination from "./Pagination.vue"
 import { mapMutations, mapActions, mapGetters } from 'vuex'
 
 export default {
-  name: "Money",
+  name: "DashBoard",
   components: {
     MyButton,
     PaymentsDisplay,
