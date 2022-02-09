@@ -24,7 +24,7 @@ import Pagination from "./Pagination.vue"
 import { mapMutations, mapActions, mapGetters } from 'vuex'
 
 export default {
-  name: "DashBoard",
+  name: "Money",
   components: {
     MyButton,
     PaymentsDisplay,
@@ -69,10 +69,14 @@ export default {
     },
     onChangePage(page){
       this.curPage = page
-      this.fetchData(page)
+      // this.fetchData(page)
     }
   },
   created(){
+    const { page } = this.$route.params
+    if (page) {
+      this.curPage = Number(page)
+    }
     this.fetchData(this.curPage)
   }
 };

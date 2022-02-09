@@ -38,7 +38,8 @@ export default {
 <style>
 .paginationList_wrapper{
     display: flex;
-    justify-content: center;
+    justify-content: start;
+    margin-left: 100px;
 }
 .paginationList{
   display: flex;
