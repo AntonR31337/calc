@@ -118,9 +118,9 @@ export default {
 .AddPaymentForm-input{
   margin-top: 15px;
 }
-.hidden{
+/* .hidden{
   display: none;
-}
+} */
 .regularPayments{
   display: flex;
   flex-direction: column;
