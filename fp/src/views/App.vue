@@ -13,15 +13,9 @@
 
       <div class="regularPayments">
         <h2>Регулярныйе платежы</h2>
-        <router-link to="/add/payment/Food?value=200">
-          <button class="regularPayments-btn">Еда</button>
-        </router-link>
-        <router-link to="/add/payment/Transport?value=50">
-          <button class="regularPayments-btn">Транспорт</button>
-        </router-link>
-        <router-link to="/add/payment/Entertiment?value=2000">
-          <button class="regularPayments-btn">Развлечения</button>
-        </router-link>
+        <a class="regularPayments-btn" href="/add/payment/Food?value=200">Еда</a>
+        <a class="regularPayments-btn" href="/add/payment/Transport?value=50"> Транспорт</a>
+        <a class="regularPayments-btn" href="/add/payment/Entertainment?value=2000">Развлечения</a>
       </div>
   </div>
 

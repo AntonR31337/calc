@@ -22,7 +22,7 @@ export default {
     },
     data(){
         return {
-            value: 0,
+            value: 0 ,
             category: "",
             date: "",
             titleBtn: 'ADD'
@@ -70,8 +70,14 @@ export default {
         }
 
         if (this.value && this.category) {
-            this.date = Date.now()
-            this.onSaveClick()
+            this.date = this.getCurrentDate
+            const data = {
+                category: this.category,
+                date: this.date,
+                id: Date.now(),
+                value: this.value
+            }
+            this.$store.commit('addDataToPaymentsList', data)
         }
     }
 }
