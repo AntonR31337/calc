@@ -65,11 +65,12 @@ export default {
             this.category = this.$route.params.category
         }
 
-        if (this.$route.params.query.value){
-            this.value = this.$route.params.query.value
+        if (this.$route.query.value){
+            this.value = Number(this.$route.query.value)
         }
 
         if (this.value && this.category) {
+            this.date = Date.now()
             this.onSaveClick()
         }
     }
