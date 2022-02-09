@@ -17,7 +17,8 @@ export default new Vuex.Store({
     },
     mutations: {
         setPaymentsListData(state, payload){
-            state.paymentsList = payload
+            // payload.flat()
+            state.paymentsList.push(...payload)
         },
         addDataToPaymentsList(state, data){
             state.paymentsList.push(data)
