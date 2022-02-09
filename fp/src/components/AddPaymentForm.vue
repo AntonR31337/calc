@@ -1,31 +1,35 @@
 <template>
-  <div class="AddPaymentForm-wrapper hidden">
-      <input class="AddPaymentForm-input" placeholder="Amount" v-model.number="value" />
+  <div class="AddPaymentForm-wrapper">
+      <button @click="addNewCost">ADD NEW COST +</button>
+      <div class="" v-if="isVisible">
+                <input class="AddPaymentForm-input" placeholder="Amount" v-model.number="value" />
       <div class="select">
           <select v-model="category">
               <option v-for="(option, idx) in options" :key="idx">{{ option }}</option>
           </select>
       </div>
       <input class="AddPaymentForm-input" placeholder="Date" v-model="date" />
-      <button @click="onSaveClick()" class="PaymentForm__btn" >Save</button>
-      <MyButton @click="onSaveClick()" :title="titleBtn" />
+      <button @click="onSaveClick" class="PaymentForm__btn" >Save</button>
+      <!-- <MyButton @click="onSaveClick()" :title="titleBtn" /> -->
+      </div>
   </div>
 </template>
 
 <script>
-import MyButton from './MyButton.vue'
+// import MyButton from './MyButton.vue'
 
 export default {
     name: "AddPaymentForm",
     components: {
-        MyButton
+        // MyButton
     },
     data(){
         return {
             value: 0 ,
             category: "",
             date: "",
-            titleBtn: 'ADD'
+            titleBtn: 'ADD',
+            isVisible: false
         };
     },
     computed: {
@@ -41,6 +45,13 @@ export default {
         }
     },
     methods: {
+        addNewCost(){
+            if (this.isVisible === false){
+                this.isVisible = true
+                } else {
+            this.isVisible = false
+            }
+        },
         onSaveClick(){
             const {value, category} = this
             const data = {

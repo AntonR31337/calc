@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+      <!-- <div class="PaymentForm">
+        <AddPaymentForm @addNewPayment="addPayment" />
+      </div> -->
     <!-- <img alt="Vue logo" src="../assets/logo.png">  -->
     <!-- <calculator msg="The Best Calculator" hidden=true />
     <DashBoard />
@@ -26,10 +29,12 @@
 // import calculator from '../components/HelloWorld.vue'
 // import DashBoard from '../components/DashBoard.vue'
 // import About from './About.vue'
+// import AddPaymentForm from "../components/AddPaymentForm.vue"
 
 export default {
   name: 'App',
   components: {
+    // AddPaymentForm,
     // calculator,
     // DashBoard,
     // About
