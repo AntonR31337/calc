@@ -4,6 +4,7 @@ import DashBoard from '../components/DashBoard.vue'
 import page404 from '../components/404.vue'
 import calc from '../components/HelloWorld.vue'
 import App from '../views/App.vue'
+import AddPaymentForm from '../components/AddPaymentForm.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/dashboard/:page/:category',
     name: 'DashBoard',
     component: DashBoard
+  },
+  {
+    path: '/:action/:section/:category',
+    name: 'AddPaymentForm',
+    component: AddPaymentForm
   },
   {
     path: '/about',

@@ -12,6 +12,19 @@
       <PaymentsDisplay class="paymentsList" :items="currentElements" />
       <!-- <Pagination :length="paymentsList.length" :cur="curPage" :n="n" @paginate="onChangePage"/> -->
       <Pagination :length="paymentsList.length" :cur="curPage" :n="n" @paginate="onChangePage"/>
+        
+      <!-- <div class="regularPayments">
+        <h2>Регулярныйе платежы</h2>
+        <router-link to="/add/payment/Food?value=200">
+          <button class="regularPayments-btn">Еда</button>
+        </router-link>
+        <router-link to="/add/payment/Transport?value=50">
+          <button class="regularPayments-btn">Транспорт</button>
+        </router-link>
+        <router-link to="/add/payment/Entertainment?value=2000">
+          <button class="regularPayments-btn">Развлечения</button>
+        </router-link>
+      </div> -->
     </main>
   </div>
 </template>
@@ -108,5 +121,12 @@ export default {
 .hidden{
   display: none;
 }
-
+.regularPayments{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.regularPayments-btn{
+  width: 200px;
+}
 </style>
