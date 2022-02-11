@@ -3,10 +3,13 @@
     <header><h1>{{ name }}</h1></header>
     <main>
       <div class="PaymentForm">
-      <AddPaymentForm @addNewPayment="addPayment" />
+      <!-- <AddPaymentForm @addNewPayment="addPayment" /> -->
       </div>
       TOTAL: <b>{{ getFullPaymentValue }}</b>
+      <br>
+      <button @click="modalShow = true">Add/Hide</button>
       <hr>
+      <modal-window v-if="modalShow" @close="modalShow = false" />
       <PaymentsDisplay class="paymentsList" :items="currentElements" />
       <!-- <Pagination :length="paymentsList.length" :cur="curPage" :n="n" @paginate="onChangePage"/> -->
       <Pagination :length="paymentsList.length" :cur="curPage" :n="n" @paginate="onChangePage"/>
@@ -29,7 +32,8 @@
 
 <script>
 import PaymentsDisplay from "./PaymentsDisplay.vue"
-import AddPaymentForm from "./AddPaymentForm.vue"
+// import AddPaymentForm from "./AddPaymentForm.vue"
+import ModalWindow from "./ModalWindow.vue"
 import Pagination from "./Pagination.vue"
 import { mapMutations, mapActions, mapGetters } from 'vuex'
 
@@ -37,7 +41,8 @@ export default {
   name: "Money",
   components: {
     PaymentsDisplay,
-    AddPaymentForm,
+    // AddPaymentForm,
+    ModalWindow,
     Pagination
   },
   props: {
@@ -50,7 +55,8 @@ export default {
       titleBtn: 'ADD NEW COST +',
       curPage: 1,
       n: 10,
-      isVisible: false
+      isVisible: false,
+      modalShow: false,
     };
   },
   computed: {

@@ -19,16 +19,16 @@ const routes = [
     name: 'DashBoard',
     component: DashBoard
   },
-  {
-    path: '/dashboard/:page/',
-    name: 'DashBoard',
-    component: DashBoard
-  },
-  {
-    path: '/dashboard/:page/:category',
-    name: 'DashBoard',
-    component: DashBoard
-  },
+  // {
+  //   path: '/dashboard/:page/',
+  //   name: 'DashBoard',
+  //   component: DashBoard
+  // },
+  // {
+  //   path: '/dashboard/:page/:category',
+  //   name: 'DashBoard',
+  //   component: DashBoard
+  // },
   {
     path: '/:action/:section/:category',
     name: 'AddPaymentForm',
