@@ -1,7 +1,7 @@
 <template>
   <div class="about">
       <h1>About the App</h1>
-      <modal-window :settings="settings" v-if="modalShow" />
+      <modal-window :settings="settings" v-if="modalShow" @close="modalShow = false"/>
   </div>
 </template>
 

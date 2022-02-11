@@ -9,7 +9,7 @@
       <br>
       <button @click="modalShow = true">Add/Hide</button>
       <hr>
-      <modal-window v-if="modalShow" @close="modalShow = false" />
+      <modal-window v-if="modalShow" @close="modalShow = false" :settings="settings" />
       <PaymentsDisplay class="paymentsList" :items="currentElements" />
       <!-- <Pagination :length="paymentsList.length" :cur="curPage" :n="n" @paginate="onChangePage"/> -->
       <Pagination :length="paymentsList.length" :cur="curPage" :n="n" @paginate="onChangePage"/>
@@ -57,6 +57,10 @@ export default {
       n: 10,
       isVisible: false,
       modalShow: false,
+      settings: {
+        header: "Add payment form",
+        content: "AddPaymentForm"
+      },
     };
   },
   computed: {

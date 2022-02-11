@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
       <div class="header">
-          {{ settings.title }}
+          {{ settings.header }}
       </div>
       <div class="content">
           <add-payment-form v-if="settings.content === 'AddPaymentForm'" />
