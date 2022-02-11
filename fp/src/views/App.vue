@@ -8,11 +8,13 @@
     <DashBoard />
     <About /> -->
     <router-view />
-    <router-link to="/index">Home</router-link><br>
-    <router-link to="/dashboard">DashBoard</router-link><br>
-    <router-link to="/calc">Calc</router-link><br>
-    <router-link to="/about">About</router-link><br>
-    <router-link to="/404">Err 404</router-link><br>
+      <div id="nav">
+        <router-link to="/">Home</router-link><br>
+        <router-link to="/dashboard">DashBoard</router-link><br>
+        <router-link to="/calc">Calc</router-link><br>
+        <router-link to="/about">About</router-link><br>
+        <router-link to="/404">Err 404</router-link><br>
+      </div>
 
       <div class="regularPayments">
         <h2>Регулярныйе платежы</h2>
@@ -20,6 +22,7 @@
         <a class="regularPayments-btn" href="/add/payment/Transport?value=50"> Транспорт</a>
         <a class="regularPayments-btn" href="/add/payment/Entertainment?value=2000">Развлечения</a>
       </div>
+      <modal-window :settings="settings" v-if="modalShow"/>
   </div>
 
 </template>
@@ -30,17 +33,22 @@
 // import DashBoard from '../components/DashBoard.vue'
 // import About from './About.vue'
 // import AddPaymentForm from "../components/AddPaymentForm.vue"
+import ModalWindow from "../components/ModalWindow.vue"
 
 export default {
   name: 'App',
   components: {
-    // AddPaymentForm,
-    // calculator,
-    // DashBoard,
-    // About
+    ModalWindow,
+  },
+  data(){
+    return {
+      modalShow: false,
+      settings: {}
+    }
   },
   created(){
-    
+    this.$modal.show()
+    this.$modal.hide()
   }
 }
 
