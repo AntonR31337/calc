@@ -13,7 +13,7 @@ const routes = [
   {
     path: '/dashboard',
     name: 'DashBoard',
-    component: () => import(/* webpackChunkName: "about" */ '../components/DashBoard.vue')
+    component: () => import(/* webpackChunkName: "DashBoard" */ '../components/DashBoard.vue')
   },
   // {
   //   path: '/dashboard/:page/',
@@ -28,7 +28,7 @@ const routes = [
   {
     path: '/:action/:section/:category',
     name: 'AddPaymentForm',
-    component: () => import(/* webpackChunkName: "about" */ '../components/AddPaymentForm.vue')
+    component: () => import(/* webpackChunkName: "AddPaymentForm" */ '../components/AddPaymentForm.vue')
 
   },
   {
@@ -43,13 +43,13 @@ const routes = [
   {
     path: "/calc",
     name: "calc",
-    component: () => import(/* webpackChunkName: "about" */ '../components/HelloWorld.vue')
+    component: () => import(/* webpackChunkName: "calc" */ '../components/HelloWorld.vue')
 
   },
   {
     path: '*',
     name: '404',
-    component: () => import(/* webpackChunkName: "about" */ '../components/404.vue')
+    component: () => import(/* webpackChunkName: "404" */ '../components/404.vue')
   }
 ]
 
