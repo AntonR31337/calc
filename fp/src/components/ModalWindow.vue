@@ -4,9 +4,7 @@
           {{ settings.header }}
       </div>
       <div class="content">
-          <add-payment-form v-if="settings.content === 'AddPaymentForm'" />
-          <auth v-if="settings.content === 'Auth'" />
-
+          <component :is="settings.content" />
       </div>
       <div class="footer">
           <button @click="onClose">Close</button>
@@ -26,7 +24,7 @@ export default {
 
     methods:{
         onClose(){
-            this.$emit('close')
+            this.$modal.hide()
         }
     }
 }

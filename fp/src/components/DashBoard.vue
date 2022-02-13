@@ -7,9 +7,8 @@
       </div>
       TOTAL: <b>{{ getFullPaymentValue }}</b>
       <br>
-      <button @click="modalShow = true">Add/Hide</button>
+      <button @click="onShowModal">Add/Hide</button>
       <hr>
-      <modal-window v-if="modalShow" @close="modalShow = false" :settings="settings" />
       <PaymentsDisplay class="paymentsList" :items="currentElements" />
       <!-- <Pagination :length="paymentsList.length" :cur="curPage" :n="n" @paginate="onChangePage"/> -->
       <Pagination :length="paymentsList.length" :cur="curPage" :n="n" @paginate="onChangePage"/>
@@ -33,7 +32,6 @@
 <script>
 import PaymentsDisplay from "./PaymentsDisplay.vue"
 // import AddPaymentForm from "./AddPaymentForm.vue"
-import ModalWindow from "./ModalWindow.vue"
 import Pagination from "./Pagination.vue"
 import { mapMutations, mapActions, mapGetters } from 'vuex'
 
@@ -42,7 +40,6 @@ export default {
   components: {
     PaymentsDisplay,
     // AddPaymentForm,
-    ModalWindow,
     Pagination
   },
   props: {
@@ -56,11 +53,6 @@ export default {
       curPage: 1,
       n: 10,
       isVisible: false,
-      modalShow: false,
-      settings: {
-        header: "Add payment form",
-        content: "AddPaymentForm"
-      },
     };
   },
   computed: {
@@ -87,6 +79,12 @@ export default {
     onChangePage(page){
       this.curPage = page
       // this.fetchData(page)
+    },
+    onShowModal(){
+      this.$modal.show('AddPaymentForm', {
+        header: "Add payment form",
+        content: "AddPaymentForm"
+      },)
     }
   },
   created(){

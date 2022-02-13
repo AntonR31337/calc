@@ -22,7 +22,7 @@
         <a class="regularPayments-btn" href="/add/payment/Transport?value=50"> Транспорт</a>
         <a class="regularPayments-btn" href="/add/payment/Entertainment?value=2000">Развлечения</a>
       </div>
-      <modal-window :settings="settings" v-if="modalShow"/>
+      <modal-window :settings="settings" v-if="modalWindowName"/>
   </div>
 
 </template>
@@ -42,13 +42,31 @@ export default {
   },
   data(){
     return {
-      modalShow: false,
+      modalWindowName: '',
       settings: {}
+    }
+  },
+  methods: {
+    onShown(settings){
+      this.modalWindowName = settings.name
+      this.settings = settings
+    },
+    onHide(){
+      this.modalWindowName = ''
+      this.settings = {}
     }
   },
   created(){
     this.$modal.show()
     this.$modal.hide()
+  },
+  mounted(){
+    this.$modal.EventBus.$on('show', this.onShown)
+    this.$modal.EventBus.$on('hide', this.onHide)
+  },
+  beforeDestroy(){
+    this.$modal.EventBus.$off('show', this.onShown)
+    this.$modal.EventBus.$off('hide', this.onHide)
   }
 }
 

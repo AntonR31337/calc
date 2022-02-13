@@ -1,15 +1,15 @@
 <template>
   <div class="about">
       <h1>About the App</h1>
-      <modal-window :settings="settings" v-if="modalShow" @close="modalShow = false"/>
+      <button @click="onShowModalAuth">Auth</button>
   </div>
 </template>
 
 <script>
-import ModalWindow from '../components/ModalWindow.vue'
+// import ModalWindow from '../components/ModalWindow.vue'
 export default {
     name: "About",
-    components: { ModalWindow },
+    // components: { ModalWindow },
 
     data(){
       return {
@@ -20,6 +20,11 @@ export default {
         }
       }
     },
+    methods:{
+      onShowModalAuth(){
+        this.$modal.show('Auth', this.settings)
+      }
+    }
 }
 </script>
 
