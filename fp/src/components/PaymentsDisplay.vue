@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: "PaymentsDisplay",
     props: {
@@ -27,7 +29,13 @@ export default {
 
       }
     },
+    computed:{
+
+    },
     methods:{
+      ...mapMutations([
+        'deleteFromPaymentsList'
+      ]),
       editItem(item){
         console.log(item, 'editItem')
       },
@@ -43,6 +51,7 @@ export default {
             text: "Delet",
             action: ()=> {
               console.log(item.id)
+              this.$store.commit('deleteFromPaymentsList', item.id)
             }
           }
         ]
