@@ -30,17 +30,14 @@
 </template>
 
 <script>
-import PaymentsDisplay from "./PaymentsDisplay.vue"
-// import AddPaymentForm from "./AddPaymentForm.vue"
-import Pagination from "./Pagination.vue"
+
 import { mapMutations, mapActions, mapGetters } from 'vuex'
 
 export default {
   name: "Money",
   components: {
-    PaymentsDisplay,
-    // AddPaymentForm,
-    Pagination
+    PaymentsDisplay: ()=> import('./PaymentsDisplay.vue'),
+    Pagination: ()=> import('./Pagination.vue')
   },
   props: {
     msg: String,

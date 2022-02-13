@@ -1,10 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import DashBoard from '../components/DashBoard.vue'
-import page404 from '../components/404.vue'
-import calc from '../components/HelloWorld.vue'
 import App from '../views/App.vue'
-import AddPaymentForm from '../components/AddPaymentForm.vue'
 
 Vue.use(VueRouter)
 
@@ -17,7 +13,7 @@ const routes = [
   {
     path: '/dashboard',
     name: 'DashBoard',
-    component: DashBoard
+    component: () => import(/* webpackChunkName: "about" */ '../components/DashBoard.vue')
   },
   // {
   //   path: '/dashboard/:page/',
@@ -32,7 +28,8 @@ const routes = [
   {
     path: '/:action/:section/:category',
     name: 'AddPaymentForm',
-    component: AddPaymentForm
+    component: () => import(/* webpackChunkName: "about" */ '../components/AddPaymentForm.vue')
+
   },
   {
     path: '/about',
@@ -46,12 +43,13 @@ const routes = [
   {
     path: "/calc",
     name: "calc",
-    component: calc
+    component: () => import(/* webpackChunkName: "about" */ '../components/HelloWorld.vue')
+
   },
   {
     path: '*',
     name: '404',
-    component: page404
+    component: () => import(/* webpackChunkName: "about" */ '../components/404.vue')
   }
 ]
 

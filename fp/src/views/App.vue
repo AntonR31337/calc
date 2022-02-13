@@ -22,23 +22,19 @@
         <a class="regularPayments-btn" href="/add/payment/Transport?value=50"> Транспорт</a>
         <a class="regularPayments-btn" href="/add/payment/Entertainment?value=2000">Развлечения</a>
       </div>
-      <modal-window :settings="settings" v-if="modalWindowName"/>
+      <transition name="fade">
+        <modal-window :settings="settings" v-if="modalWindowName"/>
+      </transition>
   </div>
 
 </template>
 
 <script>
 
-// import calculator from '../components/HelloWorld.vue'
-// import DashBoard from '../components/DashBoard.vue'
-// import About from './About.vue'
-// import AddPaymentForm from "../components/AddPaymentForm.vue"
-import ModalWindow from "../components/ModalWindow.vue"
-
 export default {
   name: 'App',
   components: {
-    ModalWindow,
+    ModalWindow: ()=> import(/* webpackChunkName: "ModalWindow" */ '../components/ModalWindow.vue'),
   },
   data(){
     return {
@@ -81,5 +77,11 @@ export default {
   text-align: unset;
   color: #2c3e50;
   margin-top: 60px;
+}
+.fade-enter-active, .fade-leave-active{
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave {
+  opacity: 0;
 }
 </style>

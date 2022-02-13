@@ -13,11 +13,13 @@
 </template>
 
 <script>
-import AddPaymentForm from "./AddPaymentForm.vue"
-import Auth from "./Auth.vue"
+
 export default {
     name: "ModalWindow",
-    components: {AddPaymentForm, Auth},
+    components: {
+      AddPaymentForm: ()=> import('./AddPaymentForm.vue'),
+      Auth: ()=> import('./Auth.vue')
+    },
     props: {
       settings: Object
     },
