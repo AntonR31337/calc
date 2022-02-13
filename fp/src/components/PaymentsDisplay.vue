@@ -31,7 +31,7 @@ export default {
       editItem(item){
         console.log(item, 'editItem')
       },
-      onShowContextMenu(item){
+      onShowContextMenu(event, item){
         const items = [
           {
             text: "Edit",
@@ -46,7 +46,7 @@ export default {
             }
           }
         ]
-        this.$context.show(items)
+        this.$context.show({event, items})
       }
     },
 }
