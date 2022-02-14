@@ -34,10 +34,18 @@ export default {
     },
     methods:{
       ...mapMutations([
-        'deleteFromPaymentsList'
+        'deleteFromPaymentsList',
+        'editItemFromPaymentsList'
       ]),
       editItem(item){
-        console.log(item, 'editItem')
+        // console.log(item, 'editItem')
+
+        this.$modal.show('EditPaymentItem', 
+          {
+            header: "Edit the payment item",
+            content: "EditPaymentItem",
+            item
+          },)
       },
       onShowContextMenu(event, item){
         const items = [

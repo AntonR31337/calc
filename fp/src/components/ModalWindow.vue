@@ -4,7 +4,7 @@
           {{ settings.header }}
       </div>
       <div class="content">
-          <component :is="settings.content" />
+          <component :is="settings.content" :item="settings.item"/>
       </div>
       <div class="footer">
           <button @click="onClose">Close</button>
@@ -18,7 +18,8 @@ export default {
     name: "ModalWindow",
     components: {
       AddPaymentForm: ()=> import('./AddPaymentForm.vue'),
-      Auth: ()=> import('./Auth.vue')
+      Auth: ()=> import('./Auth.vue'),
+      EditPaymentItem: ()=> import('./EditPaymentItem.vue')
     },
     props: {
       settings: Object
@@ -27,7 +28,10 @@ export default {
     methods:{
         onClose(){
             this.$modal.hide()
-        }
+        },
+        // getItem(){
+        //   return this.settings.item
+        // }
     }
 }
 </script>

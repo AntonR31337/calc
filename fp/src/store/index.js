@@ -1,4 +1,3 @@
-
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -28,6 +27,12 @@ export default new Vuex.Store({
             })
             state.paymentsList.splice(idxArr, 1)
         },
+        editItemFromPaymentsList(state, id){
+            const idxArr = state.paymentsList.findIndex((el)=>{
+                return el.id === id
+            })
+            console.log(idxArr)
+        },
         setCategories(state, payload){
             state.categoryList = payload
         }
@@ -47,10 +52,10 @@ export default new Vuex.Store({
                     const items = []
                     for (let i = 1; i < 51; i++){
                         items.push({
-                            date: Date.now(),
+                            date: new Date().toLocaleString("ru", {year: "numeric", month: "numeric", day: "numeric"}),
                             category: "Food",
                             id: i,
-                            value: i 
+                            value: 950
                         })
                     }
                     resolve(items)
