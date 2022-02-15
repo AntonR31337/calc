@@ -1,32 +1,29 @@
 <template>
-  <div class="home">
+  <v-container>
+    <v-row>
+      <v-col>
+        <div class="text-h5 text-sm-h3 mb-8">{{ msg="My personal costs" }}</div>
+        <v-btn>Add new cost <v-icon>mdi-plus</v-icon></v-btn>
+
+        <PaymentsDisplay class="paymentsList" :items="currentElements" />
+        <Pagination :length="paymentsList.length" :cur="curPage" :n="n" @paginate="onChangePage"/>
+      </v-col>
+      <v-col>
+        CHART
+      </v-col>
+    </v-row>
+  </v-container>
+  <!-- <div class="home">
     <header><h1>{{ name }}</h1></header>
     <main>
       <div class="PaymentForm">
-      <!-- <AddPaymentForm @addNewPayment="addPayment" /> -->
       </div>
       TOTAL: <b>{{ getFullPaymentValue }}</b>
       <br>
       <button @click="onShowModal">Add/Hide</button>
       <hr>
-      <PaymentsDisplay class="paymentsList" :items="currentElements" />
-      <!-- <Pagination :length="paymentsList.length" :cur="curPage" :n="n" @paginate="onChangePage"/> -->
-      <Pagination :length="paymentsList.length" :cur="curPage" :n="n" @paginate="onChangePage"/>
-        
-      <!-- <div class="regularPayments">
-        <h2>Регулярныйе платежы</h2>
-        <router-link to="/add/payment/Food?value=200">
-          <button class="regularPayments-btn">Еда</button>
-        </router-link>
-        <router-link to="/add/payment/Transport?value=50">
-          <button class="regularPayments-btn">Транспорт</button>
-        </router-link>
-        <router-link to="/add/payment/Entertainment?value=2000">
-          <button class="regularPayments-btn">Развлечения</button>
-        </router-link>
-      </div> -->
     </main>
-  </div>
+  </div> -->
 </template>
 
 <script>

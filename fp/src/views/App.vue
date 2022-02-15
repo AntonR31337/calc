@@ -10,6 +10,7 @@
     <router-view />
       <div id="nav">
         <router-link to="/">Home</router-link><br>
+        <router-link to="/vuetify">Vuetify</router-link><br>
         <router-link to="/dashboard">DashBoard</router-link><br>
         <router-link to="/calc">Calc</router-link><br>
         <router-link to="/about">About</router-link><br>

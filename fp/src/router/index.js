@@ -15,11 +15,11 @@ const routes = [
     name: 'DashBoard',
     component: () => import(/* webpackChunkName: "DashBoard" */ '../components/DashBoard.vue')
   },
-  // {
-  //   path: '/dashboard/:page/',
-  //   name: 'DashBoard',
-  //   component: DashBoard
-  // },
+  {
+    path: '/vuetify',
+    name: 'Vuetify',
+    component: () => import(/* webpackChunkName: "Vuetify" */ '../App.vue')
+  },
   // {
   //   path: '/dashboard/:page/:category',
   //   name: 'DashBoard',
