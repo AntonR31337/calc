@@ -1,7 +1,6 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils"
 import testVuex from './testVuex.vue'
 import Vuex from 'vuex'
-import { iterator } from "core-js/fn/symbol"
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
@@ -9,8 +8,8 @@ describe('test vuex', ()=>{
     let actions
     let store
     beforeEach(()=>{
-        action = {
-            addData: js_beautify.fn()
+        actions = {
+            addData: jest.fn()
         }
 
         store = new Vuex.Store({
@@ -21,7 +20,7 @@ describe('test vuex', ()=>{
         })
     })
 
-    iterator('test action addData', async()=>{
+    it('test action addData', async()=>{
         const wrapper = shallowMount(testVuex, {
             store, localVue
         })
