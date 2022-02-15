@@ -1,22 +1,22 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <input type="number" v-model.number.lazy="operand1">
-    <input type="number" v-model.number.lazy="operand2">
+    <input type="number" v-model.number.lazy="operand1" name="operand1">
+    <input type="number" v-model.number.lazy="operand2" name="operand2">
     = {{ result }}
     <hr>
-    <button @click="result = operand1 + operand2">+</button>
-    <button @click="result = operand1 - operand2">-</button>
-    <button @click="multiply(operand1, operand2)">*</button>
-    <button @click="divide(operand1, operand2)">/</button>
-    <button @click="exponent(operand1, operand2)">^</button>
-    <button @click="integerDivision(operand1, operand2)">%</button>
+    <button @click="result = operand1 + operand2" name="+">+</button>
+    <button @click="result = operand1 - operand2" name="-">-</button>
+    <button @click="multiply(operand1, operand2)" name="*">*</button>
+    <button @click="divide(operand1, operand2)" name="/">/</button>
+    <button @click="exponent(operand1, operand2)" name="^">^</button>
+    <button @click="integerDivision(operand1, operand2)" name="%">%</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Calculator',
   props: {
     msg: String
   },
