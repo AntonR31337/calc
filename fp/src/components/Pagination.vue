@@ -1,5 +1,9 @@
 <template>
-    <div class="paginationList_wrapper">
+    <v-pagination
+      v-model="amount"
+      :length="length"
+    ></v-pagination>
+    <!-- <div class="paginationList_wrapper">
         <button @click="onClick(cur - 1)">-</button>
         <ul class="paginationList">
             <li class="paginationList__item" v-for="page in amount" :key="page" :class="{'active': cur === page}" @click="onClick(page)">
@@ -7,7 +11,7 @@
             </li>
         </ul>
         <button @click="onClick(cur + 1)">+</button>
-    </div>
+    </div> -->
 </template>
 
 <script>
