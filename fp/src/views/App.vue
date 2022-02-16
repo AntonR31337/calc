@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+      <router-view />
+
       <!-- <div class="PaymentForm">
         <AddPaymentForm @addNewPayment="addPayment" />
       </div> -->
@@ -7,22 +9,22 @@
     <!-- <calculator msg="The Best Calculator" hidden=true />
     <DashBoard />
     <About /> -->
-    <router-view />
-      <div id="nav">
+
+      <!-- <div id="nav">
         <router-link to="/">Home</router-link><br>
         <router-link to="/vuetify">Vuetify</router-link><br>
         <router-link to="/dashboard">DashBoard</router-link><br>
         <router-link to="/calc">Calc</router-link><br>
         <router-link to="/about">About</router-link><br>
         <router-link to="/404">Err 404</router-link><br>
-      </div>
+      </div> -->
 
-      <div class="regularPayments">
+      <!-- <div class="regularPayments">
         <h2>Регулярныйе платежы</h2>
         <a class="regularPayments-btn" href="/add/payment/Food?value=200">Еда</a>
         <a class="regularPayments-btn" href="/add/payment/Transport?value=50"> Транспорт</a>
         <a class="regularPayments-btn" href="/add/payment/Entertainment?value=2000">Развлечения</a>
-      </div>
+      </div> -->
       <transition name="fade">
         <modal-window :settings="settings" v-if="modalWindowName"/>
       </transition>

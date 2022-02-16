@@ -23,7 +23,6 @@
         />
       </div>
         <v-btn to="/">Home</v-btn><br>
-        <v-btn to="/vuetify">Vuetify</v-btn><br>
         <v-btn to="/dashboard">DashBoard</v-btn><br>
         <v-btn to="/calc">Calc</v-btn><br>
         <v-btn to="/about">About</v-btn><br>
@@ -37,7 +36,16 @@
       <v-row>
         <v-col>
           <div class="text-h5 text-sm-h3 mb-8">{{ msg="My personal costs" }}</div>
-          <v-btn>Add new cost <v-icon>mdi-plus</v-icon></v-btn>
+            <v-dialog v-model="dialog" width="500">
+              <template #activator="{ on }">
+                <v-btn color="teal" dark v-on="on">Add new cost <v-icon>mdi-plus</v-icon> </v-btn> 
+              </template>
+
+              <v-card>
+                <add-payment-form @onAdd="dialog=false"/>
+              </v-card>
+
+            </v-dialog>
 
           <PaymentsDisplay class="paymentsList" :items="currentElements" />
           <Pagination :length="paymentsList.length" :cur="curPage" :n="n" @paginate="onChangePage"/>
@@ -78,7 +86,8 @@ export default {
   name: "Money",
   components: {
     PaymentsDisplay: ()=> import('./PaymentsDisplay.vue'),
-    // Pagination: ()=> import('./Pagination.vue')
+    Pagination: ()=> import('./Pagination.vue'),
+    AddPaymentForm: () => import('./AddPaymentForm.vue')
   },
   props: {
     msg: String,
@@ -90,6 +99,7 @@ export default {
       titleBtn: 'ADD NEW COST +',
       curPage: 1,
       n: 10,
+      dialog: false,
       isVisible: false,
     };
   },

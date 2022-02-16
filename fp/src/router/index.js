@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import App from '../views/App.vue'
 
 Vue.use(VueRouter)
 
@@ -8,18 +7,14 @@ const routes = [
   {
     path: "/",
     name: "index",
-    component: App
+    component: () => import(/* webpackChunkName: "Vuetify" */ '../App.vue')
   },
   {
     path: '/dashboard',
     name: 'DashBoard',
     component: () => import(/* webpackChunkName: "DashBoard" */ '../components/DashBoard.vue')
   },
-  {
-    path: '/vuetify',
-    name: 'Vuetify',
-    component: () => import(/* webpackChunkName: "Vuetify" */ '../App.vue')
-  },
+
   // {
   //   path: '/dashboard/:page/:category',
   //   name: 'DashBoard',

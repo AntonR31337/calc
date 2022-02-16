@@ -10,13 +10,11 @@
       </div>
       <input class="AddPaymentForm-input" placeholder="Date" v-model="date" />
       <button @click="onSaveClick" class="PaymentForm__btn" >Save</button>
-      <!-- <MyButton @click="onSaveClick()" :title="titleBtn" /> -->
       </div>
   </div>
 </template>
 
 <script>
-// import MyButton from './MyButton.vue'
 
 export default {
     name: "AddPaymentForm",
@@ -29,7 +27,7 @@ export default {
             category: "",
             date: "",
             titleBtn: 'ADD',
-            isVisible: false
+            isVisible: true
         };
     },
     computed: {

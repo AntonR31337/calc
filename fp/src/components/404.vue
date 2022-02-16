@@ -23,7 +23,6 @@
         />
       </div>
         <v-btn to="/">Home</v-btn><br>
-        <v-btn to="/vuetify">Vuetify</v-btn><br>
         <v-btn to="/dashboard">DashBoard</v-btn><br>
         <v-btn to="/calc">Calc</v-btn><br>
         <v-btn to="/about">About</v-btn><br>

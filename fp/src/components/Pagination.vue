@@ -1,9 +1,5 @@
 <template>
-    <v-pagination
-      v-model="amount"
-      :length="length"
-    ></v-pagination>
-    <!-- <div class="paginationList_wrapper">
+    <div class="paginationList_wrapper">
         <button @click="onClick(cur - 1)">-</button>
         <ul class="paginationList">
             <li class="paginationList__item" v-for="page in amount" :key="page" :class="{'active': cur === page}" @click="onClick(page)">
@@ -11,7 +7,7 @@
             </li>
         </ul>
         <button @click="onClick(cur + 1)">+</button>
-    </div> -->
+    </div>
 </template>
 
 <script>
@@ -24,8 +20,7 @@ export default {
     },
     computed: {
         amount(){
-            return 9
-            // return Math.ceil(this.length / this.n)
+            return Math.ceil(this.length / this.n)
         }
     },
     methods: {
