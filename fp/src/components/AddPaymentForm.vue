@@ -1,18 +1,64 @@
+
 <template>
-  <div class="AddPaymentForm-wrapper">
-      <button @click="addNewCost">ADD NEW COST +</button>
-      <div class="" v-if="isVisible">
-                <input class="AddPaymentForm-input" placeholder="Amount" v-model.number="value" />
-      <div class="select">
-          <select v-model="category">
-              <option v-for="(option, idx) in options" :key="idx">{{ option }}</option>
-          </select>
-      </div>
-      <input class="AddPaymentForm-input" placeholder="Date" v-model="date" />
-      <button @click="onSaveClick" class="PaymentForm__btn" >Save</button>
-      </div>
-  </div>
+  <v-form class="pa-4"
+    ref="form"
+    v-model="valid"
+    lazy-validation
+  >
+    <v-text-field
+      v-model="value"
+      label="VALUE"
+      required
+    ></v-text-field>
+
+    <v-text-field
+      v-model="date"
+      label="DATE"
+      required
+    ></v-text-field>
+
+    <v-select
+      v-model="select"
+      :items="category"
+      :rules="[v => !!v || 'Item is required']"
+      label="CATEGORY"
+      required
+    ></v-select>
+
+    <v-btn
+      :disabled="!valid"
+      color="success"
+      class="mr-4"
+      @click="onSaveClick"
+    >
+      Save
+    </v-btn>
+
+    <v-btn
+      color="error"
+      class="mr-4"
+      @click="isVisible"
+    >
+      Close
+    </v-btn>
+  </v-form>
+
+<!-- //   <div class="AddPaymentForm-wrapper">
+//       <button @click="addNewCost">ADD NEW COST +</button>
+//       <div class="" v-if="isVisible">
+//                 <input class="AddPaymentForm-input" placeholder="Amount" v-model.number="value" />
+//       <div class="select">
+//           <select v-model="category">
+//               <option v-for="(option, idx) in options" :key="idx">{{ option }}</option>
+//           </select>
+//       </div>
+//       <input class="AddPaymentForm-input" placeholder="Date" v-model="date" />
+//       <button @click="onSaveClick" class="PaymentForm__btn" >Save</button>
+//       </div>
+//   </div> -->
 </template>
+
+
 
 <script>
 

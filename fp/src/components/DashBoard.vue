@@ -47,8 +47,8 @@
 
             </v-dialog>
 
-          <PaymentsDisplay class="paymentsList" :items="currentElements" />
-          <Pagination :length="paymentsList.length" :cur="curPage" :n="n" @paginate="onChangePage"/>
+          <PaymentsDisplay class="paymentsList" :items="paymentsList" />
+          <!-- <Pagination :length="paymentsList.length" :cur="curPage" :n="n" @paginate="onChangePage"/> -->
 
         </v-col>
         <v-col>
@@ -86,7 +86,7 @@ export default {
   name: "Money",
   components: {
     PaymentsDisplay: ()=> import('./PaymentsDisplay.vue'),
-    Pagination: ()=> import('./Pagination.vue'),
+    // Pagination: ()=> import('./Pagination.vue'),
     AddPaymentForm: () => import('./AddPaymentForm.vue')
   },
   props: {
@@ -110,9 +110,9 @@ export default {
     paymentsList(){
       return this.$store.getters.getPaymentsList
     },
-    currentElements(){
-      return this.paymentsList.slice(this.n * (this.curPage -1 ), this.n * (this.curPage -1 ) + this.n)
-    }
+    // currentElements(){
+    //   return this.paymentsList.slice(this.n * (this.curPage -1 ), this.n * (this.curPage -1 ) + this.n)
+    // }
   },
   methods: {
     ...mapMutations({
