@@ -35,7 +35,7 @@
       <v-container>
       <v-row>
         <v-col>
-          <div class="text-h5 text-sm-h3 mb-8">{{ msg="My personal costs" }}</div>
+          <div class="text-h5 text-sm-h3 mb-8">My personal costs</div>
             <v-dialog v-model="dialog" width="500">
               <template #activator="{ on }">
                 <v-btn color="teal" dark v-on="on">Add new cost <v-icon>mdi-plus</v-icon> </v-btn> 
@@ -90,7 +90,7 @@ export default {
     AddPaymentForm: () => import('./AddPaymentForm.vue')
   },
   props: {
-    msg: String,
+    // msg: String,
     actionTitle: String
   },
   data() {

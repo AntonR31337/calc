@@ -121,14 +121,14 @@
           mdi-delete
         </v-icon>
       </template>
-      <template v-slot:no-data>
+      <!-- <template v-slot:no-data>
         <v-btn
           color="primary"
           @click="initialize"
         >
           Reset
         </v-btn>
-      </template>
+      </template> -->
   </v-data-table>
 </template>
 
@@ -189,7 +189,8 @@ export default {
     },
   },
   created () {
-    this.initialize()
+    this.initialize
+    // this.initialize() убрал () из-за ошибки "this.initialize is not a function"
   },
   methods: {
     ...mapMutations(["deleteFromPaymentsList", "editItemFromPaymentsList"]),
@@ -255,9 +256,9 @@ export default {
 
     save () {
       if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem)
+        Object.assign(this.items[this.editedIndex], this.editedItem)
       } else {
-        this.desserts.push(this.editedItem)
+        this.items.push(this.editedItem)
       }
       this.close()
     },
