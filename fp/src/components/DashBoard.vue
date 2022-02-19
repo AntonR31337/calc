@@ -52,14 +52,8 @@
 
         </v-col>
         <v-col>
-          <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.w600.comps.canstockphoto.ru/design-%D0%BA%D1%80%D1%83%D0%B3%D0%BB%D1%8B%D0%B9-%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD-%D0%B1%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_csp89577772.jpg"
-          transition="scale-transition"
-          width="100%"
-        />
+          CHART
+          <canvas ref="canvas"></canvas>
         </v-col>
       </v-row>
     </v-container>
@@ -81,9 +75,11 @@
 <script>
 
 import { mapMutations, mapActions, mapGetters } from 'vuex'
+import {Pie} from 'vue-chartjs'
 
 export default {
   name: "Money",
+  extends: Pie,
   components: {
     PaymentsDisplay: ()=> import('./PaymentsDisplay.vue'),
     // Pagination: ()=> import('./Pagination.vue'),
@@ -105,11 +101,15 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getFullPaymentValue'
+      'getFullPaymentValue',
+      'getCategoryList'
     ]),
     paymentsList(){
       return this.$store.getters.getPaymentsList
     },
+    categoryList(){
+      return this.$store.getters.getCategoryList
+    }
     // currentElements(){
     //   return this.paymentsList.slice(this.n * (this.curPage -1 ), this.n * (this.curPage -1 ) + this.n)
     // }
@@ -137,6 +137,32 @@ export default {
         content: "AddPaymentForm"
       },)
     }
+  },
+  mounted(){
+    this.renderChart({
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    })
   },
   created(){
     const { page } = this.$route.params
