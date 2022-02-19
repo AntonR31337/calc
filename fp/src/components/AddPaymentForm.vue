@@ -9,17 +9,18 @@
       v-model="value"
       label="VALUE"
       required
+      number
     ></v-text-field>
 
     <v-text-field
-      v-model="date"
+      v-model="getCurrentDate"
       label="DATE"
       required
     ></v-text-field>
 
     <v-select
-      v-model="select"
-      :items="category"
+      v-model="this.options[0]"
+      :items="options"
       :rules="[v => !!v || 'Item is required']"
       label="CATEGORY"
       required
@@ -37,7 +38,7 @@
     <v-btn
       color="error"
       class="mr-4"
-      @click="isVisible"
+      @click="closeWindow"
     >
       Close
     </v-btn>
@@ -69,6 +70,8 @@ export default {
     },
     data(){
         return {
+            // select: Object,
+            valid: true,
             value: 0 ,
             category: "",
             date: "",
@@ -89,6 +92,9 @@ export default {
         }
     },
     methods: {
+        closeWindow(){
+          this.$emit('toCloseWindow')
+        },
         addNewCost(){
             if (this.isVisible === false){
                 this.isVisible = true
@@ -104,8 +110,8 @@ export default {
                 category,
                 date: this.date || this.getCurrentDate
             };
-            this.$emit('addNewPayment', data)
-            // this.$store.commit('addDataToPaymentsList', data)
+            // this.$emit('addNewPayment', data)
+            this.$store.commit('addDataToPaymentsList', data)
         },
     },
     async created(){
@@ -133,6 +139,7 @@ export default {
                 value: this.value
             }
             this.$store.commit('addDataToPaymentsList', data)
+            // this.select = this.options[0]
         }
     }
 }

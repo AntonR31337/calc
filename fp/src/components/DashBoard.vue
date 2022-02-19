@@ -42,7 +42,7 @@
               </template>
 
               <v-card>
-                <add-payment-form @onAdd="dialog=false"/>
+                <add-payment-form @onAdd="dialog=false" @toCloseWindow="toCloseWindow"/>
               </v-card>
 
             </v-dialog>
@@ -115,6 +115,9 @@ export default {
     // }
   },
   methods: {
+    toCloseWindow(){
+      this.dialog = false
+    },
     ...mapMutations({
       myMutation: 'setPaymentsListData'
     }),
