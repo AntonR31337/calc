@@ -19,7 +19,7 @@
     ></v-text-field>
 
     <v-select
-      v-model="this.options[0]"
+      v-model="options[0]"
       :items="options"
       :rules="[v => !!v || 'Item is required']"
       label="CATEGORY"
@@ -62,6 +62,7 @@
 
 
 <script>
+import { mapGetters } from "vuex"
 
 export default {
     name: "AddPaymentForm",
@@ -80,12 +81,16 @@ export default {
         };
     },
     computed: {
+        ...mapGetters(['getPaymentsList']),
         getCurrentDate(){
             const today = new Date()
             const d = today.getDate()
             const m = today.getMonth() + 1
             const y = today.getFullYear()
             return `${d}.${m}.${y}`
+        },
+        getID(){
+          return this.$store.getters.getPaymentsList.length + 1
         },
         options(){
             return this.$store.getters.getCategoryList
@@ -105,7 +110,8 @@ export default {
         onSaveClick(){
             const {value, category} = this
             const data = {
-                id: Date.now(),
+                // id: Date.now(),
+                id: this.getID,
                 value,
                 category,
                 date: this.date || this.getCurrentDate
