@@ -3,8 +3,7 @@
       <input class="AddPaymentForm-input" placeholder="Amount" v-model="value" />
       <input class="AddPaymentForm-input" placeholder="Type" v-model="category" />
       <input class="AddPaymentForm-input" placeholder="Date" v-model="date" />
-      <button @click="onSaveClick()" class="PaymentForm__btn" >Save</button>
-      <MyButton @click="onSaveClick()" :title="titleBtn" />
+      <MyButton @onSaveClick="onSaveClick" :title="titleBtn" />
   </div>
 </template>
 

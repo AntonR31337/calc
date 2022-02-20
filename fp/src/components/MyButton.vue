@@ -1,5 +1,5 @@
 <template>
-    <button class="PaymentForm__btn"> {{ title }} </button>
+    <button class="PaymentForm__btn" @click="clicked"> {{ title }} </button>
 </template>
     
 <script>
@@ -14,7 +14,9 @@
             }
         },
         methods: {
-
+            clicked(){
+                this.$emit('onSaveClick')
+            }
         }
     }
 

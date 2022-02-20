@@ -3,8 +3,7 @@
     <header><h1>{{ name }}</h1></header>
     <main>
       <div class="PaymentForm">
-      <MyButton class="PaymentForm__btn" :title="titleBtn" @click="addNewCost" />
-      <button @click="addNewCost">ADD NEW COST +</button>
+      <MyButton class="PaymentForm__btn" :title="titleBtn" @onSaveClick="addNewCost" />
       <AddPaymentForm @addNewPayment="addPayment" />
       </div>
       <PaymentsDisplay class="PaymentsList" :items="PaymentsList" />
