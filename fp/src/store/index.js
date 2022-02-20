@@ -50,12 +50,13 @@ export default new Vuex.Store({
             return new Promise((resolve) => {
                 setTimeout(()=>{
                     const items = []
+                    const categories = ['Food', 'Transport', 'Education', 'Entertiment', 'Sport', 'Other']
                     for (let i = 1; i < 51; i++){
                         items.push({
                             date: new Date().toLocaleString("ru", {year: "numeric", month: "numeric", day: "numeric"}),
-                            category: "Food",
+                            category: categories[Math.round(Math.random() * 5)],
                             id: i,
-                            value: 950
+                            value: Math.round(Math.random() * 1000)
                         })
                     }
                     resolve(items)
