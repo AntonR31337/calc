@@ -16,24 +16,9 @@ export default {
 
         }
     },
-    // watch:{
-    //     items: function(){
-    //         this.renderChart()
-    //     },
-    // },
-    computed:{
-        categoriList(){
-            let categories = []
-            this.items.map((el) => {
-                if (!categories.includes(el.category)) {
-                    categories.push(el.category)
-                }
-            })
-            return categories
-        }
-    },
-    mounted(){
-    this.renderChart({
+    watch:{
+        items: function(){
+                this.renderChart({
         labels: this.categoriList,
         datasets: [{
             label: '# of Votes',
@@ -64,7 +49,19 @@ export default {
             borderWidth: 1
         }]
     })
-  },
+        },
+    },
+    computed:{
+        categoriList(){
+            let categories = []
+            this.items.map((el) => {
+                if (!categories.includes(el.category)) {
+                    categories.push(el.category)
+                }
+            })
+            return categories
+        }
+    },
 }
 </script>
 
